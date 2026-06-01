@@ -1,3 +1,7 @@
+"use client";
+
+import { WheelEvent, useEffect, useState } from "react";
+
 const projects = [
   {
     title: "Flexyboard",
@@ -34,7 +38,7 @@ const projects = [
     subtitle: "Sigma Phi Epsilon Booth Project",
     date: "Spring 2025",
     description:
-      "As a brother of Sigma Phi Epsilon, I participated in Booth, a Carnegie Mellon tradition where student organizations build one to two story themed structures for Spring Carnival. Each organization designs its booth around a specific interpretation of the overall theme. This year, the theme was Scottie's Playlist, and SigEp's booth focused on the Evolution of Music, showing how music media has changed over time.\n\nFor the interactive game, players received RFID bracelets that stored their music preferences as they moved through rooms representing different eras of media (concert hall -> gramophone -> radio -> vinyl -> cassette -> CD -> digital). The experience ended in a digital room finale, where each player's saved choices generated a custom song played back through the final station.",
+      "As a brother of Sigma Phi Epsilon, I participated in Booth, a Carnegie Mellon tradition where student organizations build one to two story themed structures for Spring Carnival. Each organization designs its booth around a specific interpretation of the overall theme. This year, the theme was Scottie's Playlist, and SigEp's booth focused on the Evolution of Music, showing how music media has changed over time.\n\nAs one of the Head Booth Chairs, I had many responsibilities but one interesting one that happened to fall on me was the creation of the final station of our booth game. Players received RFID bracelets that stored music they picked as they moved through rooms representing different eras of media (concert hall -> gramophone -> radio -> vinyl -> cassette -> CD -> digital). The experience ended in a digital room finale, where each players' saved choices generated a custom song played back through the final station.",
     myRole:
       "I built the final station of the game: two large custom wooden iPods that read each player's RFID bracelet, selected the matching song, displayed album art in an old iPod-style interface, and played the song through an internal speaker system.",
     highlights: [
@@ -43,7 +47,7 @@ const projects = [
       "Programmed two Raspberry Pi Zero 2 Ws to read RFID bracelet data and select the corresponding song.",
       "Built the display interface to show album art in an old iPod-style view.",
       "Used a speaker driver and externally powered speaker to play each selected song loudly inside the booth.",
-      "Completed this entire project from ideation to showing in about 1 week with no prior knowledge."
+      "Completed this entire project from ideation to showing in about 1 week with no prior knowledge.",
     ],
     skills: [
       "Raspberry Pi",
@@ -62,7 +66,8 @@ const projects = [
       {
         src: "/projects/comps.jpg",
         alt: "Components used: Raspberry Pi 2 W, TPA3116D2 speaker driver, DFPlayer",
-        caption: "Components used: Raspberry Pi 2 W, TPA3116D2 speaker driver, DFPlayer",
+        caption:
+          "Components used: Raspberry Pi 2 W, TPA3116D2 speaker driver, DFPlayer",
       },
       {
         src: "/projects/rfid.jpg",
@@ -82,8 +87,9 @@ const projects = [
       {
         src: "/projects/bracelet.jpg",
         alt: "Bracelet used by participants",
-        caption: "Simple 3D printed bracelet used by participants to track their music choices",
-      }
+        caption:
+          "Simple 3D printed bracelet used by participants to track their music choices",
+      },
     ],
     links: [
       {
@@ -225,6 +231,65 @@ const skills = {
 };
 
 export default function Home() {
+  const [selectedImage, setSelectedImage] = useState<{
+    src: string;
+    alt: string;
+    caption: string;
+  } | null>(null);
+
+  const [zoom, setZoom] = useState(1);
+  const [transformOrigin, setTransformOrigin] = useState("center center");
+
+  useEffect(() => {
+    if (!selectedImage) return;
+
+    const originalOverflow = document.body.style.overflow;
+    const originalOverscrollBehavior = document.body.style.overscrollBehavior;
+
+    document.body.style.overflow = "hidden";
+    document.body.style.overscrollBehavior = "none";
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      document.body.style.overscrollBehavior = originalOverscrollBehavior;
+    };
+  }, [selectedImage]);
+
+  function openImage(image: { src: string; alt: string; caption: string }) {
+    setSelectedImage(image);
+    setZoom(1);
+    setTransformOrigin("center center");
+  }
+
+  function closeImage() {
+    setSelectedImage(null);
+    setZoom(1);
+    setTransformOrigin("center center");
+  }
+
+  function handleImageWheel(event: WheelEvent<HTMLImageElement>) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const xPercent = ((event.clientX - rect.left) / rect.width) * 100;
+    const yPercent = ((event.clientY - rect.top) / rect.height) * 100;
+
+    setTransformOrigin(`${xPercent}% ${yPercent}%`);
+
+    setZoom((currentZoom) => {
+      const zoomAmount = event.deltaY < 0 ? 0.25 : -0.25;
+      const nextZoom = currentZoom + zoomAmount;
+
+      return Math.min(Math.max(nextZoom, 1), 5);
+    });
+  }
+
+  function stopPageScroll(event: WheelEvent<HTMLDivElement>) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
   return (
     <main className="min-h-screen bg-[#1f2020] text-white">
       {/* HERO */}
@@ -426,19 +491,23 @@ export default function Home() {
 
                     <div className="grid gap-4 md:grid-cols-3">
                       {project.images.map((image) => (
-                        <figure
+                        <button
                           key={image.src}
-                          className="overflow-hidden border border-zinc-700 bg-[#1f2020]"
+                          type="button"
+                          onClick={() => openImage(image)}
+                          className="overflow-hidden border border-zinc-700 bg-[#1f2020] text-left transition hover:border-zinc-400"
                         >
-                          <img
-                            src={image.src}
-                            alt={image.alt}
-                            className="h-56 w-full object-cover transition duration-300 hover:scale-105"
-                          />
-                          <figcaption className="border-t border-zinc-700 p-3 text-sm text-zinc-300">
-                            {image.caption}
-                          </figcaption>
-                        </figure>
+                          <figure>
+                            <img
+                              src={image.src}
+                              alt={image.alt}
+                              className="h-56 w-full object-cover transition duration-300 hover:scale-105"
+                            />
+                            <figcaption className="border-t border-zinc-700 p-3 text-sm text-zinc-300">
+                              {image.caption}
+                            </figcaption>
+                          </figure>
+                        </button>
                       ))}
                     </div>
                   </div>
@@ -605,6 +674,48 @@ export default function Home() {
       <footer className="border-t border-zinc-700 px-6 py-8 text-center text-sm text-zinc-400">
         © 2026 Harrison Hayward. Built with Next.js and Tailwind CSS.
       </footer>
+
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-black/90 px-4 py-8"
+          onClick={closeImage}
+          onWheel={stopPageScroll}
+        >
+          <button
+            type="button"
+            onClick={closeImage}
+            className="absolute right-6 top-6 z-[110] border border-white px-4 py-2 text-sm font-bold uppercase tracking-widest text-white transition hover:bg-white hover:text-black"
+          >
+            Back
+          </button>
+
+          <div
+            className="flex max-h-full max-w-6xl flex-col items-center"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <p className="mb-4 text-center text-sm text-zinc-300">
+              Scroll over the image to zoom. Zoom: {zoom.toFixed(2)}x
+            </p>
+
+            <div className="max-h-[80vh] max-w-full overflow-hidden">
+              <img
+                src={selectedImage.src}
+                alt={selectedImage.alt}
+                onWheel={handleImageWheel}
+                className="max-h-[80vh] w-auto max-w-full cursor-zoom-in object-contain transition-transform duration-100"
+                style={{
+                  transform: `scale(${zoom})`,
+                  transformOrigin,
+                }}
+              />
+            </div>
+
+            <p className="mt-4 text-center text-lg text-zinc-200">
+              {selectedImage.caption}
+            </p>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
