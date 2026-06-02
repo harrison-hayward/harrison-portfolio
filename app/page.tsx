@@ -6,7 +6,7 @@ const projects = [
   {
     title: "Flexyboard",
     subtitle: "ECE Capstone Project",
-    date: "Spring 2026",
+    date: "April 2026",
     description:
       "A flexible game table designed to let remote players still experience the physical action of moving pieces on a real board. The system used an overhead camera to detect player moves and an x-y gantry with a magnet under the tabletop to move pieces automatically.",
     myRole:
@@ -77,7 +77,7 @@ const projects = [
   {
     title: "Evolution of Music Booth Game",
     subtitle: "Sigma Phi Epsilon Booth Project",
-    date: "Spring 2025",
+    date: "April 2026",
     description:
       "As a brother of Sigma Phi Epsilon, I participated in Booth, a Carnegie Mellon tradition where student organizations build one to two story themed structures for Spring Carnival. Each organization designs its booth around a specific interpretation of the overall theme. This year, the theme was Scottie's Playlist, and SigEp's booth focused on the Evolution of Music, showing how music media has changed over time.\n\nAs one of the Head Booth Chairs, I had many responsibilities but one interesting one that happened to fall on me was the creation of the final station of our booth game. Players received RFID bracelets that stored music they picked as they moved through rooms representing different eras of media (concert hall -> gramophone -> radio -> vinyl -> cassette -> CD -> digital). The experience ended in a digital room finale, where each players' saved choices generated a custom song played back through the final station.",
     myRole:
@@ -100,33 +100,33 @@ const projects = [
     ],
     images: [
       {
-        src: "/projects/display_measure.jpg",
+        src: "/iPod/display_measure.jpg",
         alt: "Initial measurement of display on wood for iPod",
         caption: "Initial measurement of display on wood for iPod",
       },
       {
-        src: "/projects/comps.jpg",
+        src: "/iPod/comps.jpg",
         alt: "Components used: Raspberry Pi 2 W, TPA3116D2 speaker driver, DFPlayer",
         caption:
           "Components used: Raspberry Pi 2 W, TPA3116D2 speaker driver, DFPlayer",
       },
       {
-        src: "/projects/rfid.jpg",
+        src: "/iPod/rfid.jpg",
         alt: "RFID bracelet reader inside iPod",
         caption: "RFID bracelet reader inside iPod",
       },
       {
-        src: "/projects/ipod_innards.jpg",
+        src: "/iPod/ipod_innards.jpg",
         alt: "Inside view of the iPod",
         caption: "Inside view of the iPod",
       },
       {
-        src: "/projects/ipod_complete.jpg",
+        src: "/iPod/ipod_complete.jpg",
         alt: "Final iPod Station",
         caption: "Custom wooden iPod final station",
       },
       {
-        src: "/projects/bracelet.jpg",
+        src: "/iPod/bracelet.jpg",
         alt: "Bracelet used by participants",
         caption:
           "Simple 3D printed bracelet used by participants to track their music choices",
@@ -157,7 +157,32 @@ const projects = [
       "Reduced cycles by 27.5% using branch prediction.",
     ],
     skills: ["SystemVerilog", "Computer Architecture", "Branch Prediction"],
-    images: [],
+    images: [
+      {
+        src: "/riscv/01_7_stage_pipeline_architecture.png",
+        alt: "7-stage RISC-V pipelined CPU architecture diagram",
+        caption:
+          "7-stage RISC-V pipeline architecture showing the instruction flow from fetch through writeback",
+      },
+      {
+        src: "/riscv/02_forwarding_hazard_performance.png",
+        alt: "Forwarding and hazard detection performance comparison for RISC-V CPU",
+        caption:
+          "Forwarding and hazard detection improvements reduced pipeline stalls to zero and improved IPC from 0.38 to 0.99",
+      },
+      {
+        src: "/riscv/03_branch_prediction_cycle_reduction.png",
+        alt: "Branch prediction cycle reduction chart for RISC-V CPU",
+        caption:
+          "2-bit branch prediction reduced total execution cycles by 27.5%",
+      },
+      {
+        src: "/riscv/04_wall_clock_speedup.png",
+        alt: "Wall-clock speedup chart for pipelined RISC-V CPU",
+        caption:
+          "Final pipelined CPU achieved a 1.72x wall-clock performance speedup",
+      },
+    ],
     links: [],
   },
   {
@@ -174,7 +199,122 @@ const projects = [
       "Designed semiconductor layout using chaining, shared wells, and capacitor integration.",
     ],
     skills: ["Cadence Virtuoso", "Analog Circuits", "IC Layout"],
+    images: [
+      {
+        src: "/mixed_signal/01_r2r_dac_schematic.png",
+        alt: "8-bit R-2R DAC schematic in Cadence Virtuoso",
+        caption:
+          "8-bit R-2R DAC schematic built in Cadence Virtuoso to convert digital counter outputs into an analog voltage",
+      },
+      {
+        src: "/mixed_signal/02_dac_transient_output.png",
+        alt: "DAC transient staircase output simulation",
+        caption:
+          "DAC transient simulation showing the staircase output response as the digital input code increases",
+      },
+      {
+        src: "/mixed_signal/03_cmos_ota_buffer_schematic.png",
+        alt: "CMOS OTA buffer schematic in Cadence Virtuoso",
+        caption:
+          "CMOS OTA buffer schematic used to reduce load-induced output voltage drop and improve drive capability",
+      },
+      {
+        src: "/mixed_signal/04_dac_ota_layout_drc_clean.png",
+        alt: "Full DAC and OTA physical layout with clean DRC validation",
+        caption:
+          "Full DAC and OTA physical layout with clean DRC validation, showing layout-level implementation and verification",
+      },
+      {
+        src: "/mixed_signal/04_dac_ota_layout_drc_clean_2.png",
+        alt: "Zoomed-in DAC physical layout section",
+        caption:
+          "Zoomed-in DAC physical layout showing the resistor ladder routing, power rails, and repeated layout structure",
+      },
+      {
+        src: "/mixed_signal/04_dac_ota_layout_drc_clean_3.png",
+        alt: "Zoomed-in PTA physical layout section",
+        caption:
+          "Zoomed-in PTA physical layout showing transistor-level routing, shared wells, and local VDD/VSS connections",
+      },
+    ],
+    links: [
+      {
+        label: "Final Write-Up",
+        href: "/mixed_signal/MC%20Final%20Project%20Write-Up%20-%20hhayward.pdf",
+      },
+    ],
+  },
+  {
+    title: "Hardware Thread Design",
+    subtitle: "Digital Systems Project",
+    date: "March 2025",
+    description:
+      "Designed Bluetooth transmitter and receiver hardware threads in SystemVerilog, then tested and deployed them on an FPGA.",
+    myRole:
+      "I designed and implemented the transmitter and receiver hardware threads, developed the SECDED decoding flow, and tested the design on FPGA hardware.",
+    highlights: [
+      "Designed Bluetooth transmitter and receiver hardware threads in SystemVerilog.",
+      "Developed and ran data through a SECDED decoder for single-error correction and double-error detection.",
+      "Tested and deployed the hardware threads on an FPGA.",
+    ],
+    skills: [
+      "SystemVerilog",
+      "FPGA",
+      "Vivado",
+      "Bluetooth",
+      "SECDED",
+      "Digital Systems",
+    ],
     images: [],
+    links: [],
+  },
+  {
+    title: "NLP Design and Training",
+    subtitle: "Machine Learning Project",
+    date: "March 2025",
+    description:
+      "Created, trained, and tested a transformer-based language model using PyTorch and local GPU acceleration.",
+    myRole:
+      "I implemented the model training pipeline, tuned hyperparameters, applied prompt engineering, and evaluated model performance using accuracy and F1 score.",
+    highlights: [
+      "Created, trained, and tested a transformer-based large language model.",
+      "Tuned model hyperparameters and applied prompt engineering to improve accuracy and F1 score.",
+      "Implemented the model with PyTorch and used local GPU acceleration to increase training efficiency.",
+    ],
+    skills: [
+      "Python",
+      "PyTorch",
+      "Transformers",
+      "Natural Language Processing",
+      "GPU Training",
+      "Prompt Engineering",
+    ],
+    images: [
+      {
+        src: "/nlp/01_nlp_training_workflow.png",
+        alt: "NLP design and training workflow diagram",
+        caption:
+          "End-to-end NLP workflow showing dataset preparation, tokenization, transformer fine-tuning, GPU training, and evaluation",
+      },
+      {
+        src: "/nlp/02_bert_vs_modernbert_comparison.png",
+        alt: "BERT versus ModernBERT performance comparison",
+        caption:
+          "Model comparison between BERT and ModernBERT experiments across validation accuracy and training behavior",
+      },
+      {
+        src: "/nlp/03_hyperparameter_tuning_results.png",
+        alt: "NLP hyperparameter tuning results chart",
+        caption:
+          "Hyperparameter tuning results showing how learning rate, batch size, and training configuration affected model performance",
+      },
+      {
+        src: "/nlp/04_few_shot_ner_strategy_f1.png",
+        alt: "Few-shot NER strategy F1 score results",
+        caption:
+          "Few-shot named entity recognition strategy comparison using F1 score to evaluate extraction quality",
+      },
+    ],
     links: [],
   },
 ];
@@ -268,6 +408,8 @@ const skills = {
 };
 
 export default function Home() {
+  const [activeSection, setActiveSection] = useState("about");
+
   const [selectedImage, setSelectedImage] = useState<{
     src: string;
     alt: string;
@@ -276,6 +418,16 @@ export default function Home() {
 
   const [zoom, setZoom] = useState(1);
   const [transformOrigin, setTransformOrigin] = useState("center center");
+
+  const navItems = [
+    { id: "about", label: "About" },
+    { id: "experience", label: "Experience" },
+    { id: "projects", label: "Projects" },
+    { id: "leadership", label: "Leadership" },
+    { id: "skills", label: "Skills" },
+    { id: "resume", label: "Resume" },
+    { id: "contact", label: "Contact" },
+  ];
 
   useEffect(() => {
     if (!selectedImage) return;
@@ -327,19 +479,419 @@ export default function Home() {
     event.stopPropagation();
   }
 
+  function renderPageTitle(title: string, subtitle: string) {
+    return (
+      <div className="mb-12 border-b border-zinc-700 pb-8">
+        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-zinc-400">
+          Portfolio Section
+        </p>
+        <h2 className="text-4xl font-extrabold uppercase tracking-[0.18em] text-white sm:text-5xl">
+          {title}
+        </h2>
+        <p className="mt-5 max-w-3xl text-lg leading-8 text-zinc-300">
+          {subtitle}
+        </p>
+      </div>
+    );
+  }
+
+  function renderAbout() {
+    return (
+      <section>
+        {renderPageTitle(
+          "About",
+          "A quick overview of my background, interests, education, and engineering focus."
+        )}
+
+        <div className="space-y-6 text-lg leading-8 text-zinc-200">
+          <p>
+            I am pursuing a B.S. in Electrical and Computer Engineering at
+            Carnegie Mellon University with a minor in Human-Computer
+            Interaction. I am interested in building systems that combine
+            hardware, software, data, and user-focused design.
+          </p>
+
+          <p>
+            My work spans computer architecture, mixed-signal circuit design,
+            FPGA hardware threads, machine learning, data analytics, embedded
+            systems, and interactive physical computing. I enjoy technical
+            projects where I can move quickly, solve hard problems, and take
+            ownership from idea to execution.
+          </p>
+
+          <div className="grid gap-4 pt-4 sm:grid-cols-2">
+            <div className="border border-zinc-700 p-5">
+              <p className="text-sm font-bold uppercase tracking-widest text-zinc-400">
+                Education
+              </p>
+              <p className="mt-2 text-xl font-bold">Carnegie Mellon University</p>
+              <p className="mt-1 text-zinc-300">
+                B.S. Electrical and Computer Engineering
+              </p>
+              <p className="text-zinc-300">Minor in Human-Computer Interaction</p>
+            </div>
+
+            <div className="border border-zinc-700 p-5">
+              <p className="text-sm font-bold uppercase tracking-widest text-zinc-400">
+                Expected Graduation
+              </p>
+              <p className="mt-2 text-xl font-bold">May 2026</p>
+              <p className="mt-1 text-zinc-300">Pittsburgh, PA</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  function renderExperience() {
+    return (
+      <section>
+        {renderPageTitle(
+          "Experience",
+          "Professional work across investment analytics, data tools, dashboards, and educational technology."
+        )}
+
+        <div className="space-y-10">
+          {experience.map((item) => (
+            <article
+              key={`${item.role}-${item.company}`}
+              className="border-l-4 border-zinc-500 pl-6"
+            >
+              <div className="flex flex-col justify-between gap-2 sm:flex-row">
+                <div>
+                  <h3 className="text-2xl font-bold">{item.role}</h3>
+                  <p className="text-zinc-300">{item.company}</p>
+                  <p className="text-sm text-zinc-400">{item.location}</p>
+                </div>
+                <p className="text-sm font-semibold uppercase tracking-widest text-zinc-400">
+                  {item.dates}
+                </p>
+              </div>
+
+              <p className="mt-4 text-lg leading-8 text-zinc-200">
+                {item.description}
+              </p>
+
+              <ul className="mt-4 list-disc space-y-2 pl-5 text-zinc-300">
+                {item.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  function renderProjects() {
+    return (
+      <section>
+        {renderPageTitle(
+          "Projects",
+          "Selected engineering projects across embedded systems, circuits, computer architecture, hardware design, and machine learning."
+        )}
+
+        <div className="space-y-14">
+          {projects.map((project) => (
+            <article
+              key={project.title}
+              className="border border-zinc-700 bg-[#242525] p-6 transition hover:border-zinc-400"
+            >
+              <div className="flex flex-col justify-between gap-3 sm:flex-row">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-400">
+                    {project.subtitle}
+                  </p>
+                  <h3 className="mt-2 text-3xl font-bold">{project.title}</h3>
+                </div>
+
+                <p className="text-sm font-semibold uppercase tracking-widest text-zinc-400">
+                  {project.date}
+                </p>
+              </div>
+
+              <p className="mt-5 max-w-3xl whitespace-pre-line text-lg leading-8 text-zinc-200">
+                {project.description}
+              </p>
+
+              <div className="mt-6 border-l-4 border-zinc-500 pl-5">
+                <p className="text-sm font-bold uppercase tracking-widest text-zinc-400">
+                  My Role
+                </p>
+                <p className="mt-2 text-lg leading-8 text-zinc-200">
+                  {project.myRole}
+                </p>
+              </div>
+
+              <ul className="mt-6 list-disc space-y-2 pl-5 text-zinc-300">
+                {project.highlights.map((highlight) => (
+                  <li key={highlight}>{highlight}</li>
+                ))}
+              </ul>
+
+              {project.images.length > 0 && (
+                <div className="mt-8">
+                  <p className="mb-4 text-sm font-bold uppercase tracking-widest text-zinc-400">
+                    Project Images
+                  </p>
+
+                  <div className="grid gap-4 md:grid-cols-3">
+                    {project.images.map((image) => (
+                      <button
+                        key={image.src}
+                        type="button"
+                        onClick={() => openImage(image)}
+                        className="overflow-hidden border border-zinc-700 bg-[#1f2020] text-left transition hover:border-zinc-400"
+                      >
+                        <figure>
+                          <img
+                            src={image.src}
+                            alt={image.alt}
+                            className="h-56 w-full object-cover transition duration-300 hover:scale-105"
+                          />
+                          <figcaption className="border-t border-zinc-700 p-3 text-sm text-zinc-300">
+                            {image.caption}
+                          </figcaption>
+                        </figure>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                {project.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="border border-zinc-600 px-3 py-1 text-sm text-zinc-300"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+
+              {project.links.length > 0 && (
+                <div className="mt-8 flex flex-wrap gap-4">
+                  {project.links.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="border border-white px-5 py-3 text-sm font-bold uppercase tracking-widest transition hover:bg-white hover:text-black"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </article>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  function renderLeadership() {
+    return (
+      <section>
+        {renderPageTitle(
+          "Leadership",
+          "Athletics and campus leadership experiences that shaped how I work with teams under pressure."
+        )}
+
+        <div className="space-y-8">
+          {leadership.map((item) => (
+            <article key={item.title} className="border border-zinc-700 p-6">
+              <div className="flex flex-col justify-between gap-2 sm:flex-row">
+                <div>
+                  <h3 className="text-2xl font-bold">{item.title}</h3>
+                  <p className="text-zinc-300">{item.organization}</p>
+                </div>
+                <p className="text-sm font-semibold uppercase tracking-widest text-zinc-400">
+                  {item.dates}
+                </p>
+              </div>
+
+              <ul className="mt-4 list-disc space-y-2 pl-5 text-zinc-300">
+                {item.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  function renderSkills() {
+    return (
+      <section>
+        {renderPageTitle(
+          "Skills",
+          "Technical and professional skills across software, hardware, circuits, data, and project execution."
+        )}
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {Object.entries(skills).map(([category, items]) => (
+            <div key={category} className="border border-zinc-700 p-6">
+              <h3 className="text-xl font-bold">{category}</h3>
+              <div className="mt-5 flex flex-wrap gap-3">
+                {items.map((skill) => (
+                  <span
+                    key={skill}
+                    className="border border-zinc-600 px-3 py-1 text-sm text-zinc-300"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  function renderResume() {
+    return (
+      <section>
+        {renderPageTitle(
+          "Resume",
+          "View my resume directly on this page, or open the PDF in a new tab."
+        )}
+
+        <div className="overflow-hidden border border-zinc-700 bg-[#242525]">
+          <object
+            data="/resume.pdf"
+            type="application/pdf"
+            className="h-[78vh] w-full bg-white"
+          >
+            <div className="p-6 text-zinc-200">
+              <p>
+                Your browser could not display the resume PDF inline. Use the
+                button below to open it in a new tab.
+              </p>
+            </div>
+          </object>
+        </div>
+
+        <a
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 inline-block border border-white px-6 py-4 font-bold uppercase tracking-widest transition hover:bg-white hover:text-black"
+        >
+          Open Resume PDF
+        </a>
+      </section>
+    );
+  }
+
+  function renderContact() {
+    return (
+      <section>
+        {renderPageTitle(
+          "Contact",
+          "Reach out for internship opportunities, full-time roles, engineering projects, or professional connections."
+        )}
+
+        <p className="max-w-3xl text-lg leading-8 text-zinc-200">
+          I am open to internship opportunities, full-time roles, engineering
+          projects, and professional connections.
+        </p>
+
+        <div className="mt-10 grid gap-4 md:grid-cols-2">
+          <a
+            href="mailto:hhayward@andrew.cmu.edu"
+            className="border border-zinc-700 bg-[#242525] p-5 transition hover:border-white"
+          >
+            <p className="text-sm font-bold uppercase tracking-widest text-zinc-400">
+              Email
+            </p>
+            <p className="mt-2 break-words text-xl font-bold text-white">
+              hhayward@andrew.cmu.edu
+            </p>
+          </a>
+
+          <a
+            href="tel:9999999999"
+            className="border border-zinc-700 bg-[#242525] p-5 transition hover:border-white"
+          >
+            <p className="text-sm font-bold uppercase tracking-widest text-zinc-400">
+              Phone
+            </p>
+            <p className="mt-2 text-xl font-bold text-white">999-999-9999</p>
+          </a>
+
+          <a
+            href="https://linkedin.com/in/harrison-hayward"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border border-zinc-700 bg-[#242525] p-5 transition hover:border-white"
+          >
+            <p className="text-sm font-bold uppercase tracking-widest text-zinc-400">
+              LinkedIn
+            </p>
+            <p className="mt-2 break-words text-xl font-bold text-white">
+              linkedin.com/in/harrison-hayward
+            </p>
+          </a>
+
+          <a
+            href="https://github.com/Megatronicle"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border border-zinc-700 bg-[#242525] p-5 transition hover:border-white"
+          >
+            <p className="text-sm font-bold uppercase tracking-widest text-zinc-400">
+              GitHub
+            </p>
+            <p className="mt-2 break-words text-xl font-bold text-white">
+              github.com/Megatronicle
+            </p>
+          </a>
+        </div>
+      </section>
+    );
+  }
+
+  function renderActiveSection() {
+    switch (activeSection) {
+      case "about":
+        return renderAbout();
+      case "experience":
+        return renderExperience();
+      case "projects":
+        return renderProjects();
+      case "leadership":
+        return renderLeadership();
+      case "skills":
+        return renderSkills();
+      case "resume":
+        return renderResume();
+      case "contact":
+        return renderContact();
+      default:
+        return renderAbout();
+    }
+  }
+
   return (
     <main className="min-h-screen bg-[#1f2020] text-white">
       {/* HERO */}
       <section
-        id="home"
-        className="relative flex min-h-[460px] items-end bg-cover bg-center"
+        className="relative flex min-h-[360px] items-end bg-cover bg-center"
         style={{
           backgroundImage: "url('/switz.jpg')",
         }}
       >
         <div className="absolute inset-0 bg-black/50" />
 
-        <div className="relative mx-auto w-full max-w-6xl px-6 pb-16">
+        <div className="relative mx-auto w-full max-w-6xl px-6 pb-14">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-zinc-200">
             Portfolio
           </p>
@@ -358,354 +910,31 @@ export default function Home() {
 
       {/* NAV */}
       <nav className="sticky top-0 z-50 border-b border-zinc-700 bg-[#1f2020]/95 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-6 px-6 py-6 text-sm font-bold sm:gap-10 sm:text-base">
-          <a href="#about" className="transition hover:text-zinc-300">
-            About
-          </a>
-          <a href="#experience" className="transition hover:text-zinc-300">
-            Experience
-          </a>
-          <a href="#projects" className="transition hover:text-zinc-300">
-            Projects
-          </a>
-          <a href="#leadership" className="transition hover:text-zinc-300">
-            Leadership
-          </a>
-          <a href="#skills" className="transition hover:text-zinc-300">
-            Skills
-          </a>
-          <a href="#resume" className="transition hover:text-zinc-300">
-            Resume
-          </a>
-          <a href="#contact" className="transition hover:text-zinc-300">
-            Contact
-          </a>
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-3 px-6 py-5 text-sm font-bold sm:gap-4 sm:text-base">
+          {navItems.map((item) => {
+            const isActive = activeSection === item.id;
+
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setActiveSection(item.id)}
+                className={`border px-4 py-2 uppercase tracking-widest transition ${
+                  isActive
+                    ? "border-white bg-white text-black"
+                    : "border-transparent text-white hover:border-zinc-500 hover:text-zinc-300"
+                }`}
+              >
+                {item.label}
+              </button>
+            );
+          })}
         </div>
       </nav>
 
-      {/* ABOUT */}
-      <section id="about" className="border-b border-zinc-700">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-24 md:grid-cols-[280px_1fr]">
-          <h2 className="text-2xl font-extrabold uppercase tracking-[0.18em]">
-            About
-          </h2>
-
-          <div className="space-y-6 text-lg leading-8 text-zinc-200">
-            <p>
-              I am pursuing a B.S. in Electrical and Computer Engineering at
-              Carnegie Mellon University with a minor in Human-Computer
-              Interaction. I am interested in building systems that combine
-              hardware, software, data, and user-focused design.
-            </p>
-
-            <p>
-              My work spans computer architecture, mixed-signal circuit design,
-              FPGA hardware threads, machine learning, data analytics, embedded
-              systems, and interactive physical computing. I enjoy technical
-              projects where I can move quickly, solve hard problems, and take
-              ownership from idea to execution.
-            </p>
-
-            <div className="grid gap-4 pt-4 sm:grid-cols-2">
-              <div className="border border-zinc-700 p-5">
-                <p className="text-sm font-bold uppercase tracking-widest text-zinc-400">
-                  Education
-                </p>
-                <p className="mt-2 text-xl font-bold">
-                  Carnegie Mellon University
-                </p>
-                <p className="mt-1 text-zinc-300">
-                  B.S. Electrical and Computer Engineering
-                </p>
-                <p className="text-zinc-300">
-                  Minor in Human-Computer Interaction
-                </p>
-              </div>
-
-              <div className="border border-zinc-700 p-5">
-                <p className="text-sm font-bold uppercase tracking-widest text-zinc-400">
-                  Expected Graduation
-                </p>
-                <p className="mt-2 text-xl font-bold">May 2026</p>
-                <p className="mt-1 text-zinc-300">Pittsburgh, PA</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* EXPERIENCE */}
-      <section id="experience" className="border-b border-zinc-700">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-24 md:grid-cols-[280px_1fr]">
-          <h2 className="text-2xl font-extrabold uppercase tracking-[0.18em]">
-            Experience
-          </h2>
-
-          <div className="space-y-10">
-            {experience.map((item) => (
-              <article
-                key={`${item.role}-${item.company}`}
-                className="border-l-4 border-zinc-500 pl-6"
-              >
-                <div className="flex flex-col justify-between gap-2 sm:flex-row">
-                  <div>
-                    <h3 className="text-2xl font-bold">{item.role}</h3>
-                    <p className="text-zinc-300">{item.company}</p>
-                    <p className="text-sm text-zinc-400">{item.location}</p>
-                  </div>
-                  <p className="text-sm font-semibold uppercase tracking-widest text-zinc-400">
-                    {item.dates}
-                  </p>
-                </div>
-
-                <p className="mt-4 text-lg leading-8 text-zinc-200">
-                  {item.description}
-                </p>
-
-                <ul className="mt-4 list-disc space-y-2 pl-5 text-zinc-300">
-                  {item.bullets.map((bullet) => (
-                    <li key={bullet}>{bullet}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* PROJECTS */}
-      <section id="projects" className="border-b border-zinc-700">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-24 md:grid-cols-[280px_1fr]">
-          <h2 className="text-2xl font-extrabold uppercase tracking-[0.18em]">
-            Projects
-          </h2>
-
-          <div className="space-y-14">
-            {projects.map((project) => (
-              <article
-                key={project.title}
-                className="border border-zinc-700 bg-[#242525] p-6 transition hover:border-zinc-400"
-              >
-                <div className="flex flex-col justify-between gap-3 sm:flex-row">
-                  <div>
-                    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-400">
-                      {project.subtitle}
-                    </p>
-                    <h3 className="mt-2 text-3xl font-bold">
-                      {project.title}
-                    </h3>
-                  </div>
-
-                  <p className="text-sm font-semibold uppercase tracking-widest text-zinc-400">
-                    {project.date}
-                  </p>
-                </div>
-
-                <p className="mt-5 max-w-3xl whitespace-pre-line text-lg leading-8 text-zinc-200">
-                  {project.description}
-                </p>
-
-                <div className="mt-6 border-l-4 border-zinc-500 pl-5">
-                  <p className="text-sm font-bold uppercase tracking-widest text-zinc-400">
-                    My Role
-                  </p>
-                  <p className="mt-2 text-lg leading-8 text-zinc-200">
-                    {project.myRole}
-                  </p>
-                </div>
-
-                <ul className="mt-6 list-disc space-y-2 pl-5 text-zinc-300">
-                  {project.highlights.map((highlight) => (
-                    <li key={highlight}>{highlight}</li>
-                  ))}
-                </ul>
-
-                {project.images.length > 0 && (
-                  <div className="mt-8">
-                    <p className="mb-4 text-sm font-bold uppercase tracking-widest text-zinc-400">
-                      Project Images
-                    </p>
-
-                    <div className="grid gap-4 md:grid-cols-3">
-                      {project.images.map((image) => (
-                        <button
-                          key={image.src}
-                          type="button"
-                          onClick={() => openImage(image)}
-                          className="overflow-hidden border border-zinc-700 bg-[#1f2020] text-left transition hover:border-zinc-400"
-                        >
-                          <figure>
-                            <img
-                              src={image.src}
-                              alt={image.alt}
-                              className="h-56 w-full object-cover transition duration-300 hover:scale-105"
-                            />
-                            <figcaption className="border-t border-zinc-700 p-3 text-sm text-zinc-300">
-                              {image.caption}
-                            </figcaption>
-                          </figure>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                <div className="mt-6 flex flex-wrap gap-3">
-                  {project.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="border border-zinc-600 px-3 py-1 text-sm text-zinc-300"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-
-                {project.links.length > 0 && (
-                  <div className="mt-8 flex flex-wrap gap-4">
-                    {project.links.map((link) => (
-                      <a
-                        key={link.href}
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="border border-white px-5 py-3 text-sm font-bold uppercase tracking-widest transition hover:bg-white hover:text-black"
-                      >
-                        {link.label}
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* LEADERSHIP */}
-      <section id="leadership" className="border-b border-zinc-700">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-24 md:grid-cols-[280px_1fr]">
-          <h2 className="text-2xl font-extrabold uppercase tracking-[0.18em]">
-            Leadership
-          </h2>
-
-          <div className="space-y-8">
-            {leadership.map((item) => (
-              <article key={item.title} className="border border-zinc-700 p-6">
-                <div className="flex flex-col justify-between gap-2 sm:flex-row">
-                  <div>
-                    <h3 className="text-2xl font-bold">{item.title}</h3>
-                    <p className="text-zinc-300">{item.organization}</p>
-                  </div>
-                  <p className="text-sm font-semibold uppercase tracking-widest text-zinc-400">
-                    {item.dates}
-                  </p>
-                </div>
-
-                <ul className="mt-4 list-disc space-y-2 pl-5 text-zinc-300">
-                  {item.bullets.map((bullet) => (
-                    <li key={bullet}>{bullet}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SKILLS */}
-      <section id="skills" className="border-b border-zinc-700">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-24 md:grid-cols-[280px_1fr]">
-          <h2 className="text-2xl font-extrabold uppercase tracking-[0.18em]">
-            Skills
-          </h2>
-
-          <div className="grid gap-6 md:grid-cols-3">
-            {Object.entries(skills).map(([category, items]) => (
-              <div key={category} className="border border-zinc-700 p-6">
-                <h3 className="text-xl font-bold">{category}</h3>
-                <div className="mt-5 flex flex-wrap gap-3">
-                  {items.map((skill) => (
-                    <span
-                      key={skill}
-                      className="border border-zinc-600 px-3 py-1 text-sm text-zinc-300"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* RESUME */}
-      <section id="resume" className="border-b border-zinc-700">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-24 md:grid-cols-[280px_1fr]">
-          <h2 className="text-2xl font-extrabold uppercase tracking-[0.18em]">
-            Resume
-          </h2>
-
-          <div>
-            <p className="max-w-3xl text-lg leading-8 text-zinc-200">
-              View or download my resume for a complete summary of my education,
-              experience, projects, leadership, and technical skills.
-            </p>
-
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-block border border-white px-6 py-4 font-bold uppercase tracking-widest transition hover:bg-white hover:text-black"
-            >
-              View Resume
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* CONTACT */}
-      <section id="contact">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-24 md:grid-cols-[280px_1fr]">
-          <h2 className="text-2xl font-extrabold uppercase tracking-[0.18em]">
-            Contact
-          </h2>
-
-          <div>
-            <p className="max-w-3xl text-lg leading-8 text-zinc-200">
-              I am open to internship opportunities, full-time roles,
-              engineering projects, and professional connections.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href="mailto:hhayward@andrew.cmu.edu"
-                className="border border-white px-6 py-4 font-bold uppercase tracking-widest transition hover:bg-white hover:text-black"
-              >
-                Email
-              </a>
-
-              <a
-                href="https://linkedin.com/in/harrison-hayward"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="border border-zinc-500 px-6 py-4 font-bold uppercase tracking-widest transition hover:border-white hover:bg-white hover:text-black"
-              >
-                LinkedIn
-              </a>
-
-              <a
-                href="https://github.com/Megatronicle"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="border border-zinc-500 px-6 py-4 font-bold uppercase tracking-widest transition hover:border-white hover:bg-white hover:text-black"
-              >
-                GitHub
-              </a>
-            </div>
-          </div>
-        </div>
+      {/* ACTIVE PAGE */}
+      <section className="min-h-[calc(100vh-520px)] border-b border-zinc-700">
+        <div className="mx-auto max-w-6xl px-6 py-20">{renderActiveSection()}</div>
       </section>
 
       <footer className="border-t border-zinc-700 px-6 py-8 text-center text-sm text-zinc-400">
@@ -727,27 +956,30 @@ export default function Home() {
           </button>
 
           <div
-            className="flex max-h-full max-w-6xl flex-col items-center"
+            className="flex h-full w-full max-w-[96vw] flex-col items-center"
             onClick={(event) => event.stopPropagation()}
           >
             <p className="mb-4 text-center text-sm text-zinc-300">
               Scroll over the image to zoom. Zoom: {zoom.toFixed(2)}x
             </p>
 
-            <div className="max-h-[80vh] max-w-full overflow-hidden">
+            <div className="flex max-h-[82vh] w-full items-center justify-center overflow-auto">
               <img
                 src={selectedImage.src}
                 alt={selectedImage.alt}
                 onWheel={handleImageWheel}
-                className="max-h-[80vh] w-auto max-w-full cursor-zoom-in object-contain transition-transform duration-100"
+                className="cursor-zoom-in object-contain transition-transform duration-100"
                 style={{
+                  width: "min(92vw, 1500px)",
+                  maxHeight: "82vh",
+                  height: "auto",
                   transform: `scale(${zoom})`,
                   transformOrigin,
                 }}
               />
             </div>
 
-            <p className="mt-4 text-center text-lg text-zinc-200">
+            <p className="mt-4 max-w-5xl text-center text-lg text-zinc-200">
               {selectedImage.caption}
             </p>
           </div>
