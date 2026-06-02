@@ -25,11 +25,52 @@ const projects = [
       "Embedded Systems",
       "Physical Prototyping",
     ],
-    images: [],
+    images: [
+      {
+        src: "/capstone/01_full_prototype_annotated.png",
+        alt: "Full annotated FlexyBoard prototype with overhead camera, gantry, Raspberry Pi, and power supply",
+        caption:
+          "Full FlexyBoard prototype with overhead camera, gantry, Raspberry Pi, and power supply",
+      },
+      {
+        src: "/capstone/02_cv_board_detection_view.png",
+        alt: "Computer vision board detection view showing detected board regions and pieces",
+        caption:
+          "Computer vision board detection view used to identify board state and piece movement",
+      },
+      {
+        src: "/capstone/03_full_system_block_diagram.png",
+        alt: "Full FlexyBoard system block diagram",
+        caption:
+          "Full system block diagram showing the gantry, control, computer vision, software, and communication flow",
+      },
+      {
+        src: "/capstone/04_system_architecture_sketch.png",
+        alt: "FlexyBoard system architecture sketch",
+        caption:
+          "System architecture sketch showing the overhead camera, board surface, under-table gantry, and control electronics",
+      },
+      {
+        src: "/capstone/05_gantry_mechanism_sketch.png",
+        alt: "FlexyBoard XY gantry mechanism sketch",
+        caption:
+          "XY gantry mechanism sketch showing the motors, belt system, sliders, and magnet extension",
+      },
+      {
+        src: "/capstone/06_control_communication_subsystem.png",
+        alt: "FlexyBoard control and communication subsystem diagram",
+        caption:
+          "Control and communication subsystem connecting the software GUI, Raspberry Pi, STM32, motor drivers, and status LED",
+      },
+    ],
     links: [
       {
         label: "Watch Demo",
         href: "https://www.youtube.com/watch?v=KzByPlQyC8Q",
+      },
+      {
+        label: "FlexyBoard Github",
+        href: "https://github.com/ChrisBernitsas/FlexyBoard",
       },
     ],
   },
@@ -97,12 +138,8 @@ const projects = [
         href: "https://www.springcarnival.org/booth.shtml",
       },
       {
-        label: "iPod Project Github",
-        href: "http://localhost:3000",
-      },
-      {
-        label: "Head Booth Chair Responsibilities",
-        href: "https://drive.google.com/drive/folders/1eTtnNA8aSClevoIuJ9KjEApKjfXA1b5R?usp=sharing",
+        label: "iPod Station Github",
+        href: "https://github.com/Megatronicle/SB26_iPodGame",
       },
     ],
   },
