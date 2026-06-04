@@ -237,12 +237,7 @@ const projects = [
           "Zoomed-in PTA physical layout showing transistor-level routing, shared wells, and local VDD/VSS connections",
       },
     ],
-    links: [
-      {
-        label: "Final Write-Up",
-        href: "/mixed_signal/MC%20Final%20Project%20Write-Up%20-%20hhayward.pdf",
-      },
-    ],
+    links: [],
   },
   {
     title: "Hardware Thread Design",
@@ -265,7 +260,33 @@ const projects = [
       "SECDED",
       "Digital Systems",
     ],
-    images: [],
+    images: [
+      {
+        src: "/hardware_thread/01_hardware_thread_system_architecture.png",
+        alt: "Hardware Thread Design system architecture diagram",
+        caption:
+          "Hardware-thread pipeline showing input data moving through the transmitter thread, link layer, receiver thread, SECDED decoder, and FPGA output display",
+      },
+      {
+        src: "/hardware_thread/SECDEDdecoder%20Diagram%20Final.pdf",
+        alt: "Original SECDED decoder PDF diagram",
+        caption:
+          "Original SECDED decoder PDF diagram showing syndrome generation, 1-bit error correction, 2-bit error detection, and corrected data output routing",
+        type: "pdf",
+      },
+      {
+        src: "/hardware_thread/03_systemverilog_implementation_map.png",
+        alt: "SystemVerilog implementation map for hardware thread design",
+        caption:
+          "SystemVerilog implementation map showing how the transmitter, receiver, SECDED logic, and display modules fit together",
+      },
+      {
+        src: "/hardware_thread/04_verification_fpga_deployment_flow.png",
+        alt: "Verification and FPGA deployment flow with waveform screenshot",
+        caption:
+          "Verification and FPGA deployment flow showing RTL simulation, waveform inspection, synthesis, and board-level validation",
+      },
+    ],
     links: [],
   },
   {
@@ -298,21 +319,21 @@ const projects = [
       },
       {
         src: "/nlp/02_bert_vs_modernbert_comparison.png",
-        alt: "BERT versus ModernBERT performance comparison",
+        alt: "BERT versus ModernBERT model selection comparison chart",
         caption:
-          "Model comparison between BERT and ModernBERT experiments across validation accuracy and training behavior",
+          "BERT versus ModernBERT comparison showing validation performance across model-selection experiments",
       },
       {
         src: "/nlp/03_hyperparameter_tuning_results.png",
-        alt: "NLP hyperparameter tuning results chart",
+        alt: "NLP hyperparameter validation loss by configuration chart",
         caption:
-          "Hyperparameter tuning results showing how learning rate, batch size, and training configuration affected model performance",
+          "Hyperparameter tuning results comparing validation loss across learning-rate, batch-size, and training configuration choices",
       },
       {
         src: "/nlp/04_few_shot_ner_strategy_f1.png",
-        alt: "Few-shot NER strategy F1 score results",
+        alt: "Few-shot named entity recognition strategy F1 score chart",
         caption:
-          "Few-shot named entity recognition strategy comparison using F1 score to evaluate extraction quality",
+          "Few-shot NER strategy comparison showing F1-score improvements across prompting and extraction strategies",
       },
     ],
     links: [],
@@ -414,6 +435,7 @@ export default function Home() {
     src: string;
     alt: string;
     caption: string;
+    type?: "image" | "pdf";
   } | null>(null);
 
   const [zoom, setZoom] = useState(1);
@@ -435,16 +457,29 @@ export default function Home() {
     const originalOverflow = document.body.style.overflow;
     const originalOverscrollBehavior = document.body.style.overscrollBehavior;
 
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        closeImage();
+      }
+    }
+
     document.body.style.overflow = "hidden";
     document.body.style.overscrollBehavior = "none";
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
       document.body.style.overflow = originalOverflow;
       document.body.style.overscrollBehavior = originalOverscrollBehavior;
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [selectedImage]);
 
-  function openImage(image: { src: string; alt: string; caption: string }) {
+  function openImage(image: {
+    src: string;
+    alt: string;
+    caption: string;
+    type?: "image" | "pdf";
+  }) {
     setSelectedImage(image);
     setZoom(1);
     setTransformOrigin("center center");
@@ -646,11 +681,26 @@ export default function Home() {
                         className="overflow-hidden border border-zinc-700 bg-[#1f2020] text-left transition hover:border-zinc-400"
                       >
                         <figure>
-                          <img
-                            src={image.src}
-                            alt={image.alt}
-                            className="h-56 w-full object-cover transition duration-300 hover:scale-105"
-                          />
+                          {image.type === "pdf" ? (
+                            <div className="h-56 w-full overflow-hidden bg-white">
+                              <object
+                                data={`${image.src}#page=1&view=FitH`}
+                                type="application/pdf"
+                                className="h-full w-full pointer-events-none"
+                                aria-label={image.alt}
+                              >
+                                <div className="flex h-full items-center justify-center bg-[#1f2020] p-4 text-center text-sm text-zinc-300">
+                                  Open the PDF to view the SECDED decoder diagram.
+                                </div>
+                              </object>
+                            </div>
+                          ) : (
+                            <img
+                              src={image.src}
+                              alt={image.alt}
+                              className="h-56 w-full object-cover transition duration-300 hover:scale-105"
+                            />
+                          )}
                           <figcaption className="border-t border-zinc-700 p-3 text-sm text-zinc-300">
                             {image.caption}
                           </figcaption>
@@ -818,13 +868,13 @@ export default function Home() {
           </a>
 
           <a
-            href="tel:9999999999"
+            href="tel:9143348145"
             className="border border-zinc-700 bg-[#242525] p-5 transition hover:border-white"
           >
             <p className="text-sm font-bold uppercase tracking-widest text-zinc-400">
               Phone
             </p>
-            <p className="mt-2 text-xl font-bold text-white">999-999-9999</p>
+            <p className="mt-2 text-xl font-bold text-white">914-334-8145</p>
           </a>
 
           <a
@@ -960,28 +1010,54 @@ export default function Home() {
             onClick={(event) => event.stopPropagation()}
           >
             <p className="mb-4 text-center text-sm text-zinc-300">
-              Scroll over the image to zoom. Zoom: {zoom.toFixed(2)}x
+              {selectedImage.type === "pdf"
+                ? "PDF preview shown inline. Use your browser controls to zoom or open it directly."
+                : `Scroll over the image to zoom. Zoom: ${zoom.toFixed(2)}x`}
             </p>
 
             <div className="flex max-h-[82vh] w-full items-center justify-center overflow-auto">
-              <img
-                src={selectedImage.src}
-                alt={selectedImage.alt}
-                onWheel={handleImageWheel}
-                className="cursor-zoom-in object-contain transition-transform duration-100"
-                style={{
-                  width: "min(92vw, 1500px)",
-                  maxHeight: "82vh",
-                  height: "auto",
-                  transform: `scale(${zoom})`,
-                  transformOrigin,
-                }}
-              />
+              {selectedImage.type === "pdf" ? (
+                <object
+                  data={`${selectedImage.src}#page=1&view=FitH`}
+                  type="application/pdf"
+                  className="h-[82vh] w-[92vw] max-w-[1500px] bg-white"
+                  aria-label={selectedImage.alt}
+                >
+                  <div className="flex h-[82vh] w-[92vw] max-w-[1500px] items-center justify-center border border-zinc-700 bg-[#1f2020] p-6 text-center text-zinc-200">
+                    This browser could not display the PDF inline. Use the button below to open it.
+                  </div>
+                </object>
+              ) : (
+                <img
+                  src={selectedImage.src}
+                  alt={selectedImage.alt}
+                  onWheel={handleImageWheel}
+                  className="cursor-zoom-in object-contain transition-transform duration-100"
+                  style={{
+                    width: "min(92vw, 1500px)",
+                    maxHeight: "82vh",
+                    height: "auto",
+                    transform: `scale(${zoom})`,
+                    transformOrigin,
+                  }}
+                />
+              )}
             </div>
 
             <p className="mt-4 max-w-5xl text-center text-lg text-zinc-200">
               {selectedImage.caption}
             </p>
+
+            {selectedImage.type === "pdf" && (
+              <a
+                href={selectedImage.src}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 border border-white px-5 py-3 text-sm font-bold uppercase tracking-widest text-white transition hover:bg-white hover:text-black"
+              >
+                Open PDF
+              </a>
+            )}
           </div>
         </div>
       )}
