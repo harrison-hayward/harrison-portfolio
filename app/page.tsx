@@ -2,7 +2,31 @@
 
 import { WheelEvent, useEffect, useState } from "react";
 
-const projects = [
+type ProjectImage = {
+  src: string;
+  alt: string;
+  caption: string;
+  type?: "image" | "pdf";
+};
+
+type ProjectLink = {
+  label: string;
+  href: string;
+};
+
+type Project = {
+  title: string;
+  subtitle: string;
+  date: string;
+  description: string;
+  myRole: string;
+  highlights: string[];
+  skills: string[];
+  images: ProjectImage[];
+  links: ProjectLink[];
+};
+
+const projects: Project[] = [
   {
     title: "Flexyboard",
     subtitle: "ECE Capstone Project",
@@ -339,36 +363,36 @@ const projects = [
     links: [],
   },
   {
-    title: "CPU Cache Simulator",
+    title: "Proxy",
     subtitle: "Computer Systems Project",
     date: "November 2024",
     description:
-      "Engineered a performance simulation in C to evaluate how efficiently data is accessed and stored in memory.",
+      "Developed a multithreaded caching web proxy in C for concurrent HTTP/1.0 GET requests.",
     myRole:
-      "I implemented the cache simulation logic, analyzed memory access behavior, and optimized algorithms to reduce unnecessary data access.",
+      "I implemented the core proxy behavior, including socket communication, request parsing, multithreading, LRU caching, and thorough error handling.",
     highlights: [
-      "Built a C-based simulator to evaluate memory access and storage efficiency.",
-      "Analyzed access patterns and cache configurations to identify bottlenecks and overhead.",
-      "Optimized algorithms to reduce unnecessary data access and improve simulation efficiency.",
+      "Built a multithreaded proxy server to handle concurrent client requests.",
+      "Implemented an LRU cache to reduce repeated network requests and improve response efficiency.",
+      "Added robust request parsing, socket communication, and error handling for HTTP/1.0 GET traffic.",
     ],
-    skills: ["C", "Computer Systems", "Memory Hierarchy", "Performance Simulation"],
+    skills: ["C", "Sockets", "Multithreading", "HTTP", "Caching", "Systems Programming"],
     images: [],
     links: [],
   },
   {
-    title: "Dynamic Memory Allocator",
-    subtitle: "Computer Systems Project",
-    date: "November 2024",
+    title: "Creating RFID Antenna Coils",
+    subtitle: "Electrical Engineering Project",
+    date: "March 2024",
     description:
-      "Engineered a custom memory management system in C to efficiently allocate, resize, and reclaim memory.",
+      "Designed a 125 kHz RFID scanner antenna coil using RLC circuit tuning and mutual inductance calculations for improved tag detection and powering.",
     myRole:
-      "I designed and implemented the allocator behavior, including dynamic allocation, resizing, alignment, block coalescing, and free-space detection.",
+      "I designed, prototyped, and tested the antenna coil, including coil winding, resonant frequency tuning, and circuit-level optimization for reliable RFID operation.",
     highlights: [
-      "Implemented dynamic allocation and resizing while minimizing fragmentation.",
-      "Optimized allocator performance using alignment and block coalescing.",
-      "Improved free-space detection to make memory reuse more efficient.",
+      "Designed a 125 kHz RFID antenna coil for scanner-tag coupling.",
+      "Used RLC circuit tuning and mutual inductance calculations to optimize detection and powering behavior.",
+      "Built and tested physical prototypes through coil winding and resonant frequency measurement.",
     ],
-    skills: ["C", "Memory Management", "Systems Programming", "Performance Optimization"],
+    skills: ["RFID", "Antenna Design", "RLC Circuits", "Mutual Inductance", "Prototyping", "Circuit Testing"],
     images: [],
     links: [],
   },
@@ -478,12 +502,7 @@ const skills = {
 export default function Home() {
   const [activeSection, setActiveSection] = useState("about");
 
-  const [selectedImage, setSelectedImage] = useState<{
-    src: string;
-    alt: string;
-    caption: string;
-    type?: "image" | "pdf";
-  } | null>(null);
+  const [selectedImage, setSelectedImage] = useState<ProjectImage | null>(null);
 
   const [zoom, setZoom] = useState(1);
   const [transformOrigin, setTransformOrigin] = useState("center center");
@@ -521,12 +540,7 @@ export default function Home() {
     };
   }, [selectedImage]);
 
-  function openImage(image: {
-    src: string;
-    alt: string;
-    caption: string;
-    type?: "image" | "pdf";
-  }) {
+  function openImage(image: ProjectImage) {
     setSelectedImage(image);
     setZoom(1);
     setTransformOrigin("center center");
