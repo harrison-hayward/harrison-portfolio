@@ -8,11 +8,11 @@ const projects = [
     subtitle: "ECE Capstone Project",
     date: "April 2026",
     description:
-      "A flexible game table designed to let remote players still experience the physical action of moving pieces on a real board. The system used an overhead camera to detect player moves and an x-y gantry with a magnet under the tabletop to move pieces automatically.",
+      "A flexible game table designed to let online players still experience the physical action of moving pieces on a real board. The system uses an overhead camera to detect moves and an x-y gantry with a magnet under the tabletop to move pieces automatically.",
     myRole:
       "I focused on the gantry setup, calibration, stepper motor control code, physical electronics, and microcontroller implementation.",
     highlights: [
-      "Built around an x-y gantry system that moved a magnet underneath the board surface.",
+      "Built around an x-y gantry system that moves a magnet underneath the board surface.",
       "Used an overhead camera to capture initial and final board states, then detect piece movement through pixel differences.",
       "Transferred detected moves to a second player through a laptop GUI.",
       "Implemented the physical actuation system that moved Player 2's chosen piece on the Flexyboard.",
@@ -57,10 +57,10 @@ const projects = [
           "XY gantry mechanism sketch showing the motors, belt system, sliders, and magnet extension",
       },
       {
-        src: "/capstone/06_control_communication_subsystem.png",
-        alt: "FlexyBoard control and communication subsystem diagram",
+        src: "/capstone/06_playerCycle.png",
+        alt: "FlexyBoard control and communication diagram",
         caption:
-          "Control and communication subsystem connecting the software GUI, Raspberry Pi, STM32, motor drivers, and status LED",
+          "FlexyBoard player move process diagram showing how the system captures Player 1's move, sends it to Player 2, and uses an under-table XY gantry to execute the response on the physical board",
       },
     ],
     links: [
@@ -124,13 +124,13 @@ const projects = [
         src: "/iPod/ipod_complete.jpg",
         alt: "Final iPod Station",
         caption: "Custom wooden iPod final station",
-      },
-      {
-        src: "/iPod/bracelet.jpg",
-        alt: "Bracelet used by participants",
-        caption:
-          "Simple 3D printed bracelet used by participants to track their music choices",
-      },
+      }
+      //{
+      //  src: "/iPod/bracelet.jpg",
+      //  alt: "Bracelet used by participants",
+      //  caption:
+      //    "Simple 3D printed bracelet used by participants to track their music choices",
+      //},
     ],
     links: [
       {
@@ -139,7 +139,7 @@ const projects = [
       },
       {
         label: "iPod Station Github",
-        href: "https://github.com/Megatronicle/SB26_iPodGame",
+        href: "https://github.com/harrison-hayward/SB26_iPodGame",
       },
     ],
   },
@@ -338,6 +338,40 @@ const projects = [
     ],
     links: [],
   },
+  {
+    title: "CPU Cache Simulator",
+    subtitle: "Computer Systems Project",
+    date: "November 2024",
+    description:
+      "Engineered a performance simulation in C to evaluate how efficiently data is accessed and stored in memory.",
+    myRole:
+      "I implemented the cache simulation logic, analyzed memory access behavior, and optimized algorithms to reduce unnecessary data access.",
+    highlights: [
+      "Built a C-based simulator to evaluate memory access and storage efficiency.",
+      "Analyzed access patterns and cache configurations to identify bottlenecks and overhead.",
+      "Optimized algorithms to reduce unnecessary data access and improve simulation efficiency.",
+    ],
+    skills: ["C", "Computer Systems", "Memory Hierarchy", "Performance Simulation"],
+    images: [],
+    links: [],
+  },
+  {
+    title: "Dynamic Memory Allocator",
+    subtitle: "Computer Systems Project",
+    date: "November 2024",
+    description:
+      "Engineered a custom memory management system in C to efficiently allocate, resize, and reclaim memory.",
+    myRole:
+      "I designed and implemented the allocator behavior, including dynamic allocation, resizing, alignment, block coalescing, and free-space detection.",
+    highlights: [
+      "Implemented dynamic allocation and resizing while minimizing fragmentation.",
+      "Optimized allocator performance using alignment and block coalescing.",
+      "Improved free-space detection to make memory reuse more efficient.",
+    ],
+    skills: ["C", "Memory Management", "Systems Programming", "Performance Optimization"],
+    images: [],
+    links: [],
+  },
 ];
 
 const experience = [
@@ -379,6 +413,19 @@ const experience = [
       "Designed and launched a makerspace program for underserved NYC students.",
       "Built an online course platform to support remote learning.",
       "Used Fusion 360 and data analysis to support robotics education and COVID-safe gear design.",
+    ],
+  },
+  {
+    role: "Financial Analyst Intern",
+    company: "MA Asset Management",
+    location: "Irvington, NY",
+    dates: "April 2022 - June 2022",
+    description:
+      "Built financial models and analyzed debt repayment trends to support investment decision-making.",
+    bullets: [
+      "Developed Excel-based company models to forecast growth projections and support strategic investment decisions.",
+      "Used ConServ data to graph and evaluate MA's debt repayment trends.",
+      "Delivered a presentation to management about the impacts of COVID-19 on financial behavior.",
     ],
   },
 ];
@@ -540,38 +587,64 @@ export default function Home() {
 
         <div className="space-y-6 text-lg leading-8 text-zinc-200">
           <p>
-            I am pursuing a B.S. in Electrical and Computer Engineering at
-            Carnegie Mellon University with a minor in Human-Computer
-            Interaction. I am interested in building systems that combine
-            hardware, software, data, and user-focused design.
+            I recently completed a B.S. in Electrical and Computer Engineering at Carnegie Mellon University 
+            with a minor in Human-Computer Interaction. I am now pursuing an M.S. in Electrical and Computer 
+            Engineering, expected May 2027, with a focus on semiconductor and hardware system design.
           </p>
 
           <p>
-            My work spans computer architecture, mixed-signal circuit design,
-            FPGA hardware threads, machine learning, data analytics, embedded
-            systems, and interactive physical computing. I enjoy technical
-            projects where I can move quickly, solve hard problems, and take
-            ownership from idea to execution.
+            My work spans modern computer architecture, circuit design, FPGA hardware threads, data analytics, 
+            embedded systems, and interactive physical computing. I enjoy technical projects involving building 
+            systems that combine hardware and software with fast iteration and design.
           </p>
 
-          <div className="grid gap-4 pt-4 sm:grid-cols-2">
-            <div className="border border-zinc-700 p-5">
-              <p className="text-sm font-bold uppercase tracking-widest text-zinc-400">
-                Education
+          <div className="grid gap-4 pt-4 lg:grid-cols-2">
+            <div className="border border-zinc-700 bg-[#242525] p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-zinc-500">
+                Undergraduate
               </p>
-              <p className="mt-2 text-xl font-bold">Carnegie Mellon University</p>
-              <p className="mt-1 text-zinc-300">
+              <h3 className="mt-3 text-2xl font-bold text-white">
                 B.S. Electrical and Computer Engineering
+              </h3>
+              <p className="mt-2 text-zinc-300">Carnegie Mellon University</p>
+              <p className="mt-1 text-zinc-400">
+                Minor in Human-Computer Interaction
               </p>
-              <p className="text-zinc-300">Minor in Human-Computer Interaction</p>
+
+              <div className="mt-5 border-t border-zinc-700 pt-4">
+                <span className="inline-flex border border-zinc-600 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-300">
+                  Completed
+                </span>
+              </div>
             </div>
 
-            <div className="border border-zinc-700 p-5">
-              <p className="text-sm font-bold uppercase tracking-widest text-zinc-400">
-                Expected Graduation
+            <div className="border border-zinc-700 bg-[#242525] p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-zinc-500">
+                Graduate
               </p>
-              <p className="mt-2 text-xl font-bold">May 2026</p>
-              <p className="mt-1 text-zinc-300">Pittsburgh, PA</p>
+              <h3 className="mt-3 text-2xl font-bold text-white">
+                M.S. Electrical and Computer Engineering
+              </h3>
+              <p className="mt-2 text-zinc-300">Carnegie Mellon University</p>
+              <p className="mt-1 text-zinc-400">
+                Focus: Semiconductor and Hardware System Design
+              </p>
+
+              <div className="mt-5 grid gap-4 border-t border-zinc-700 pt-4 sm:grid-cols-2">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                    Expected Graduation
+                  </p>
+                  <p className="mt-1 text-sm font-semibold text-zinc-200">May 2027</p>
+                </div>
+
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                    Location
+                  </p>
+                  <p className="mt-1 text-sm text-zinc-300">Pittsburgh, PA</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -625,7 +698,7 @@ export default function Home() {
       <section>
         {renderPageTitle(
           "Projects",
-          "Selected engineering projects across embedded systems, circuits, computer architecture, hardware design, and machine learning."
+          "Engineering projects across embedded systems, circuits, computer architecture, hardware design, and machine learning."
         )}
 
         <div className="space-y-14">
@@ -845,13 +918,12 @@ export default function Home() {
     return (
       <section>
         {renderPageTitle(
-          "Contact",
-          "Reach out for internship opportunities, full-time roles, engineering projects, or professional connections."
+          "Contact", "Reach out for internship opportunities, full-time roles, engineering projects, or professional connections."
         )}
 
         <p className="max-w-3xl text-lg leading-8 text-zinc-200">
-          I am open to internship opportunities, full-time roles, engineering
-          projects, and professional connections.
+          
+
         </p>
 
         <div className="mt-10 grid gap-4 md:grid-cols-2">
@@ -892,7 +964,7 @@ export default function Home() {
           </a>
 
           <a
-            href="https://github.com/Megatronicle"
+            href="https://github.com/harrison-hayward"
             target="_blank"
             rel="noopener noreferrer"
             className="border border-zinc-700 bg-[#242525] p-5 transition hover:border-white"
@@ -901,7 +973,7 @@ export default function Home() {
               GitHub
             </p>
             <p className="mt-2 break-words text-xl font-bold text-white">
-              github.com/Megatronicle
+              github.com/harrison-hayward
             </p>
           </a>
         </div>
@@ -988,7 +1060,25 @@ export default function Home() {
       </section>
 
       <footer className="border-t border-zinc-700 px-6 py-8 text-center text-sm text-zinc-400">
-        © 2026 Harrison Hayward. Built with Next.js and Tailwind CSS.
+        <div className="mx-auto max-w-3xl space-y-3">
+          <p>
+            © 2026 Harrison Hayward. Built with Next.js and Tailwind CSS.
+          </p>
+
+          <p className="leading-6">
+            I created this website with AI-assisted development in about 12 hours
+            work.
+          </p>
+
+          <a
+            href="https://github.com/harrison-hayward/harrison-portfolio"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block font-semibold text-zinc-200 underline underline-offset-4 transition hover:text-white"
+          >
+            View the website code on GitHub
+          </a>
+        </div>
       </footer>
 
       {selectedImage && (
