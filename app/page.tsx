@@ -2,6 +2,7 @@
 
 import { WheelEvent, useEffect, useState } from "react";
 
+// These types describe the shape of project data used throughout the page.
 type ProjectImage = {
   src: string;
   alt: string;
@@ -26,6 +27,7 @@ type Project = {
   links: ProjectLink[];
 };
 
+// Main project content. Updating this array updates the Projects section automatically.
 const projects: Project[] = [
   {
     title: "Flexyboard",
@@ -398,6 +400,7 @@ const projects: Project[] = [
   },
 ];
 
+// Work experience content used to build the Experience cards.
 const experience = [
   {
     role: "Data Analyst Intern",
@@ -454,6 +457,7 @@ const experience = [
   },
 ];
 
+// Leadership and athletics content used to build the Leadership cards.
 const leadership = [
   {
     title: "Track and Field — Pole Vault",
@@ -478,6 +482,7 @@ const leadership = [
   },
 ];
 
+// Skills are grouped by category so each group can be rendered as its own card.
 const skills = {
   Languages: ["C", "C++", "Python", "SQL", "HTML/CSS", "Java", "JavaScript"],
   Hardware: [
@@ -499,14 +504,19 @@ const skills = {
   ],
 };
 
+// Main portfolio page component.
 export default function Home() {
+  // Tracks which portfolio section is currently being shown.
   const [activeSection, setActiveSection] = useState("about");
 
+  // Stores the image/PDF currently open in the fullscreen preview modal.
   const [selectedImage, setSelectedImage] = useState<ProjectImage | null>(null);
 
+  // Controls image zoom level and where the zoom should focus.
   const [zoom, setZoom] = useState(1);
   const [transformOrigin, setTransformOrigin] = useState("center center");
 
+  // Navigation buttons map directly to section IDs handled in renderActiveSection().
   const navItems = [
     { id: "about", label: "About" },
     { id: "experience", label: "Experience" },
@@ -517,6 +527,7 @@ export default function Home() {
     { id: "contact", label: "Contact" },
   ];
 
+  // When the modal is open, lock page scrolling and let Escape close the preview.
   useEffect(() => {
     if (!selectedImage) return;
 
@@ -540,18 +551,21 @@ export default function Home() {
     };
   }, [selectedImage]);
 
+  // Opens an image or PDF preview and resets zoom each time.
   function openImage(image: ProjectImage) {
     setSelectedImage(image);
     setZoom(1);
     setTransformOrigin("center center");
   }
 
+  // Closes the preview modal and clears zoom state.
   function closeImage() {
     setSelectedImage(null);
     setZoom(1);
     setTransformOrigin("center center");
   }
 
+  // Zooms into the image at the mouse position when the viewer scrolls.
   function handleImageWheel(event: WheelEvent<HTMLImageElement>) {
     event.preventDefault();
     event.stopPropagation();
@@ -570,27 +584,34 @@ export default function Home() {
     });
   }
 
+  // Prevents wheel events inside the modal from scrolling the page behind it.
   function stopPageScroll(event: WheelEvent<HTMLDivElement>) {
     event.preventDefault();
     event.stopPropagation();
   }
 
+  // Shared title block used at the top of each portfolio section.
   function renderPageTitle(title: string, subtitle: string) {
     return (
-      <div className="mb-12 border-b border-zinc-700 pb-8">
+      <div className="mb-12">
         <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-zinc-400">
           Portfolio Section
         </p>
+
         <h2 className="text-4xl font-extrabold uppercase tracking-[0.18em] text-white sm:text-5xl">
           {title}
         </h2>
+
         <p className="mt-5 max-w-3xl text-lg leading-8 text-zinc-300">
           {subtitle}
         </p>
+
+        <div className="mt-10 h-px w-full bg-zinc-700" />
       </div>
     );
   }
 
+  // Renders the About section.
   function renderAbout() {
     return (
       <section>
@@ -666,6 +687,7 @@ export default function Home() {
     );
   }
 
+  // Renders experience cards from the experience array.
   function renderExperience() {
     return (
       <section>
@@ -678,7 +700,7 @@ export default function Home() {
           {experience.map((item) => (
             <article
               key={`${item.role}-${item.company}`}
-              className="border-l-4 border-zinc-500 pl-6"
+              className="border border-zinc-700 bg-[#242525] p-6 transition hover:border-zinc-400"
             >
               <div className="flex flex-col justify-between gap-2 sm:flex-row">
                 <div>
@@ -707,6 +729,7 @@ export default function Home() {
     );
   }
 
+  // Renders project cards, including image/PDF thumbnails and external links.
   function renderProjects() {
     return (
       <section>
@@ -831,6 +854,7 @@ export default function Home() {
     );
   }
 
+  // Renders leadership entries from the leadership array.
   function renderLeadership() {
     return (
       <section>
@@ -841,7 +865,7 @@ export default function Home() {
 
         <div className="space-y-8">
           {leadership.map((item) => (
-            <article key={item.title} className="border border-zinc-700 p-6">
+            <article key={item.title} className="border border-zinc-700 bg-[#242525] p-6 transition hover:border-zinc-400">
               <div className="flex flex-col justify-between gap-2 sm:flex-row">
                 <div>
                   <h3 className="text-2xl font-bold">{item.title}</h3>
@@ -864,6 +888,7 @@ export default function Home() {
     );
   }
 
+  // Renders skill categories and individual skill tags.
   function renderSkills() {
     return (
       <section>
@@ -874,7 +899,7 @@ export default function Home() {
 
         <div className="grid gap-6 md:grid-cols-3">
           {Object.entries(skills).map(([category, items]) => (
-            <div key={category} className="border border-zinc-700 p-6">
+            <div key={category} className="border border-zinc-700 bg-[#242525] p-6 transition hover:border-zinc-400">
               <h3 className="text-xl font-bold">{category}</h3>
               <div className="mt-5 flex flex-wrap gap-3">
                 {items.map((skill) => (
@@ -893,6 +918,7 @@ export default function Home() {
     );
   }
 
+  // Embeds the resume PDF and includes a backup link for browsers that cannot show it inline.
   function renderResume() {
     return (
       <section>
@@ -928,6 +954,7 @@ export default function Home() {
     );
   }
 
+  // Renders contact methods as clickable cards.
   function renderContact() {
     return (
       <section>
@@ -995,6 +1022,7 @@ export default function Home() {
     );
   }
 
+  // Chooses which section renderer to call based on the active navigation tab.
   function renderActiveSection() {
     switch (activeSection) {
       case "about":
@@ -1018,7 +1046,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#1f2020] text-white">
-      {/* HERO */}
+      {/* HERO: large intro banner with background image and short summary. */}
       <section
         className="relative flex min-h-[360px] items-end bg-cover bg-center"
         style={{
@@ -1044,7 +1072,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* NAV */}
+      {/* NAV: sticky section selector. Buttons update activeSection instead of routing pages. */}
       <nav className="sticky top-0 z-50 border-b border-zinc-700 bg-[#1f2020]/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-3 px-6 py-5 text-sm font-bold sm:gap-4 sm:text-base">
           {navItems.map((item) => {
@@ -1068,20 +1096,19 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* ACTIVE PAGE */}
+      {/* ACTIVE PAGE: displays the currently selected section. */}
       <section className="min-h-[calc(100vh-520px)] border-b border-zinc-700">
         <div className="mx-auto max-w-6xl px-6 py-20">{renderActiveSection()}</div>
       </section>
 
-      <footer className="border-t border-zinc-700 px-6 py-8 text-center text-sm text-zinc-400">
+      <footer className="px-6 py-8 text-center text-sm text-zinc-400">
         <div className="mx-auto max-w-3xl space-y-3">
           <p>
             © 2026 Harrison Hayward. Built with Next.js and Tailwind CSS.
           </p>
 
           <p className="leading-6">
-            I created this website with AI-assisted development in about 12 hours
-            work.
+            Created this website from the ground up with the help of AI, completing it in ~12 hours of work with no prior knowledge.
           </p>
 
           <a
@@ -1095,6 +1122,7 @@ export default function Home() {
         </div>
       </footer>
 
+      {/* IMAGE MODAL: appears when a project image or PDF thumbnail is clicked. */}
       {selectedImage && (
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-black/90 px-4 py-8"
