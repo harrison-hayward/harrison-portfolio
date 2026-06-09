@@ -617,7 +617,7 @@ export default function Home() {
       <section>
         {renderPageTitle(
           "About",
-          "A quick overview of my background, interests, education, and engineering focus."
+          ""
         )}
 
         <div className="space-y-6 text-lg leading-8 text-zinc-200">
@@ -1060,15 +1060,27 @@ export default function Home() {
             Portfolio
           </p>
 
-          <h1 className="max-w-5xl text-5xl font-extrabold uppercase tracking-[0.16em] text-white sm:text-6xl">
-            Harrison Hayward
-          </h1>
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h1 className="max-w-5xl text-5xl font-extrabold uppercase tracking-[0.16em] text-white sm:text-6xl">
+                Harrison Hayward
+              </h1>
 
-          <p className="mt-4 max-w-3xl text-xl leading-8 text-zinc-200">
-            Electrical and Computer Engineering student at Carnegie Mellon
-            University with experience in hardware design, data analytics,
-            software development, and human-computer interaction.
-          </p>
+              <p className="mt-4 max-w-3xl text-xl leading-8 text-zinc-200">
+                Electrical and Computer Engineering student at Carnegie Mellon
+                University with experience in hardware design, data analytics,
+                software development, and human-computer interaction.
+              </p>
+            </div>
+
+            <div className="flex shrink-0 items-center justify-center md:ml-8">
+              <img
+                src="/profile.jpg"
+                alt="Harrison Hayward headshot"
+                className="h-36 w-36 rounded-full border-2 border-white/80 object-cover shadow-2xl sm:h-44 sm:w-44"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
