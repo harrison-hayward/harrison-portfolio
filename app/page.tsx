@@ -101,9 +101,51 @@ const projects: Project[] = [
     ],
   },
   {
+    title: "Pipelined RISC-V CPU",
+    subtitle: "Computer Architecture Project",
+    date: "March 2026",
+    description:
+      "Designed a 7-stage RISC-V processor in SystemVerilog with hazard detection, forwarding, and a 2-bit branch predictor.",
+    myRole:
+      "I worked on processor architecture, pipeline behavior, performance improvement, and SystemVerilog implementation.",
+    highlights: [
+      "Reduced pipeline stalls to zero, improving IPC from 0.38 to 0.99.",
+      "Achieved 1.72x wall-clock performance speedup.",
+      "Reduced cycles by 27.5% using branch prediction.",
+    ],
+    skills: ["SystemVerilog", "Computer Architecture", "Branch Prediction"],
+    images: [
+      {
+        src: "/riscv/01_7_stage_pipeline_architecture.png",
+        alt: "7-stage RISC-V pipelined CPU architecture diagram",
+        caption:
+          "7-stage RISC-V pipeline architecture showing the instruction flow from fetch through writeback",
+      },
+      {
+        src: "/riscv/02_forwarding_hazard_performance.png",
+        alt: "Forwarding and hazard detection performance comparison for RISC-V CPU",
+        caption:
+          "Forwarding and hazard detection improvements reduced pipeline stalls to zero and improved IPC from 0.38 to 0.99",
+      },
+      {
+        src: "/riscv/03_branch_prediction_cycle_reduction.png",
+        alt: "Branch prediction cycle reduction chart for RISC-V CPU",
+        caption:
+          "2-bit branch prediction reduced total execution cycles by 27.5%",
+      },
+      {
+        src: "/riscv/04_wall_clock_speedup.png",
+        alt: "Wall-clock speedup chart for pipelined RISC-V CPU",
+        caption:
+          "Final pipelined CPU achieved a 1.72x wall-clock performance speedup",
+      },
+    ],
+    links: [],
+  },
+  {
     title: "Evolution of Music Booth Game",
     subtitle: "Sigma Phi Epsilon Booth Project",
-    date: "April 2026",
+    date: "March 2026",
     description:
       "As a brother of Sigma Phi Epsilon, I participated in Booth, a Carnegie Mellon tradition where student organizations build one to two story themed structures for Spring Carnival. Each organization designs its booth around a specific interpretation of the overall theme. This year, the theme was Scottie's Playlist, and SigEp's booth focused on the Evolution of Music, showing how music media has changed over time.\n\nAs one of the Head Booth Chairs, I had many responsibilities but one interesting one that happened to fall on me was the creation of the final station of our booth game. Players received RFID bracelets that stored music they picked as they moved through rooms representing different eras of media (concert hall -> gramophone -> radio -> vinyl -> cassette -> CD -> digital). The experience ended in a digital room finale, where each players' saved choices generated a custom song played back through the final station.",
     myRole:
@@ -168,48 +210,6 @@ const projects: Project[] = [
         href: "https://github.com/harrison-hayward/SB26_iPodGame",
       },
     ],
-  },
-  {
-    title: "Pipelined RISC-V CPU",
-    subtitle: "Computer Architecture Project",
-    date: "March 2026",
-    description:
-      "Designed a 7-stage RISC-V processor in SystemVerilog with hazard detection, forwarding, and a 2-bit branch predictor.",
-    myRole:
-      "I worked on processor architecture, pipeline behavior, performance improvement, and SystemVerilog implementation.",
-    highlights: [
-      "Reduced pipeline stalls to zero, improving IPC from 0.38 to 0.99.",
-      "Achieved 1.72x wall-clock performance speedup.",
-      "Reduced cycles by 27.5% using branch prediction.",
-    ],
-    skills: ["SystemVerilog", "Computer Architecture", "Branch Prediction"],
-    images: [
-      {
-        src: "/riscv/01_7_stage_pipeline_architecture.png",
-        alt: "7-stage RISC-V pipelined CPU architecture diagram",
-        caption:
-          "7-stage RISC-V pipeline architecture showing the instruction flow from fetch through writeback",
-      },
-      {
-        src: "/riscv/02_forwarding_hazard_performance.png",
-        alt: "Forwarding and hazard detection performance comparison for RISC-V CPU",
-        caption:
-          "Forwarding and hazard detection improvements reduced pipeline stalls to zero and improved IPC from 0.38 to 0.99",
-      },
-      {
-        src: "/riscv/03_branch_prediction_cycle_reduction.png",
-        alt: "Branch prediction cycle reduction chart for RISC-V CPU",
-        caption:
-          "2-bit branch prediction reduced total execution cycles by 27.5%",
-      },
-      {
-        src: "/riscv/04_wall_clock_speedup.png",
-        alt: "Wall-clock speedup chart for pipelined RISC-V CPU",
-        caption:
-          "Final pipelined CPU achieved a 1.72x wall-clock performance speedup",
-      },
-    ],
-    links: [],
   },
   {
     title: "Mixed Signal IC Design",
@@ -292,6 +292,12 @@ const projects: Project[] = [
         alt: "Hardware Thread Design system architecture diagram",
         caption:
           "Hardware-thread pipeline showing input data moving through the transmitter thread, link layer, receiver thread, SECDED decoder, and FPGA output display",
+      },
+      {
+        src: "/hardware_thread/05_hardware_thread_control_logic_sketch.jpeg",
+        alt: "Hand-drawn hardware thread control logic and datapath sketch",
+        caption:
+          "Hand-drawn hardware thread control logic sketch showing counters, comparators, shift registers, SECDED decoder flow, and serial input/output timing",
       },
       {
         src: "/hardware_thread/SECDEDdecoder%20Diagram%20Final.pdf",
